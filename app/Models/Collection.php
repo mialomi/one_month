@@ -10,4 +10,11 @@ class Collection extends Model
     use HasFactory;
 
     protected $fillable = ['name'];
+
+    public function events(){
+        return $this->hasMany(Collection::class);
+    }
+
+
+
 }

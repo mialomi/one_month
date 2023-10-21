@@ -9,7 +9,15 @@ class Money extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['spendings', 'earnings'];
+    protected $fillable = ['spendings', 'earnings, brands_id'];
+
+    public function brands(){
+        return $this->hasMany(Brand::class);
+    }
+
+    public function events(){
+        return $this->hasMany(Event::class);
+    }
 
 
 }
