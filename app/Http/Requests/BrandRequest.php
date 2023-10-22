@@ -6,7 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Models\Brand;
 use Illuminate\Foundation\Http\FormRequest;
 
-class BrandCreateRequest extends FormRequest
+class BrandRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
