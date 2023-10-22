@@ -30,12 +30,12 @@
         @csrf
         
         <div>
-          <label for="brand_name" class="block mb-1 text-sm font-medium text-gray-700">Name Brand</label>
-          <input type="text" name="brand_name" id="brand_name" class="block w-full px-3 py-1 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="Enter name brand" value="{{ old('brand_name') }}" />
+          <label for="brand_name" class="block mb-1 text-sm font-medium text-gray-700">Brand Name</label>
+          <input type="text" name="brand_name" id="brand_name" class="block w-full px-3 py-1 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="Enter brand name" value="{{ old('brand_name') }}" />
           @error('brand_name')
             <div class="text-danger">{{ $message }}</div>
             @enderror
-                </div>
+        </div>
         <div>
           <label for="creative_director" class="block mb-1 text-sm font-medium text-gray-700">Creative Director</label>
           <input type="text" name="creative_director" id="creative_director" class="block w-full px-3 py-1 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="Enter creative director" value="{{ old('creative_director') }}" />

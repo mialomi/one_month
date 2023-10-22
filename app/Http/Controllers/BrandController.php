@@ -34,12 +34,15 @@ class BrandController extends Controller
         $data = $request->validated();
         
         $brand = new Brand([
+
             'brand_name' => $data['brand_name'],
             'creative_director' => $data['creative_director'],
-            'estbalished_year' => $data['established_year'],
+            'headquarters' => $data['headquarters'],
+            'established_year' => $data['established_year'],
             'website' => $data['website'],
-            'image_logo' => $data['image_logo'],
+            //'image_logo' => $data['image_logo'],
         ]);
+        
         $brand->save();
 
         return redirect('/brand')->with('message', 'Success!, Your brand has been saved successfully');

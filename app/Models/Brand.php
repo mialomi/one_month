@@ -10,7 +10,7 @@ class Brand extends Model
 {
     use HasFactory;
     
-    protected $fillable = ['name_brand', 'creative_director', 'headquarters', 'established_year', 'image_logo', 'website'];
+    protected $fillable = ['brand_name', 'creative_director', 'headquarters', 'established_year', 'image_logo', 'website'];
 
 
     public function events(){

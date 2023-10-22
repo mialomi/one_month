@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use App\Http\Controllers\BrandController;
+use App\Models\Brand;
 use Illuminate\Foundation\Http\FormRequest;
 
 class BrandCreateRequest extends FormRequest
@@ -25,7 +26,7 @@ class BrandCreateRequest extends FormRequest
         $year = date('Y');
         return [
 
-        'brand_name' => 'required|string|max:20',
+        'brand_name' => 'required|string',
         'creative_director' => 'required|string|max:40',
         'headquarters' => 'required|string|max:40',
         'established_year' => 'required|numeric|digits:4|gte:1850|lte:'.$year,
@@ -37,7 +38,7 @@ class BrandCreateRequest extends FormRequest
     public function messages(): array{
 
         return [
-            'brand_name.required' => 'The name of the brand is essential!',
+            'brand_name.required'=> 'The name of the brand is essential!',
             'creative_director.required'=> 'The brain behind the brand is essential!',
             'headquarters.required'=> 'The where is essential!',
             'established_year.required'=> 'The when is also essential!',
