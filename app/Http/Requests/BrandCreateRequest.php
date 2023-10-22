@@ -22,12 +22,13 @@ class BrandCreateRequest extends FormRequest
      */
     public function rules(): array
     {
+        $year = date('Y');
         return [
 
         'brand_name' => 'required|string|max:20',
         'creative_director' => 'required|string|max:40',
         'headquarters' => 'required|string|max:40',
-        'established_year' => 'required|numeric|digits:4',
+        'established_year' => 'required|numeric|digits:4|gte:1850|lte:'.$year,
         'website' => 'required|active_url',
         'image_logo' => 'nullable|string|max:255',
         ];
@@ -40,8 +41,10 @@ class BrandCreateRequest extends FormRequest
             'creative_director.required'=> 'The brain behind the brand is essential!',
             'headquarters.required'=> 'The where is essential!',
             'established_year.required'=> 'The when is also essential!',
-            'established_year.numeric'=> 'Hey! This is not a year!', //revisar que no pueden escribir más de 4
-            'established_year.digits'=> 'Hey! You forget a number...',
+            'established_year.numeric'=> 'Hey! This is not a year!', 
+            'established_year.digits'=> 'Hey! What era is this?',
+            'established_year.gte'=> 'Hey! What era is this?',
+            'established_year.lte'=> 'Hey! Can you guess the future?',
             'website.required'=> 'Hey! The new where is essential!',
             'website.active_url'=> 'Hey! wwwwhat is this?'
 
