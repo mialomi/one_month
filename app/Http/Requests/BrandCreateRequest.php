@@ -1,0 +1,50 @@
+<?php
+
+namespace App\Http\Requests;
+
+use App\Http\Controllers\BrandController;
+use Illuminate\Foundation\Http\FormRequest;
+
+class BrandCreateRequest extends FormRequest
+{
+    /**
+     * Determine if the user is authorized to make this request.
+     */
+    public function authorize(): bool
+    {
+        return true;
+    }
+
+    /**
+     * Get the validation rules that apply to the request.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
+     */
+    public function rules(): array
+    {
+        return [
+
+        'brand_name' => 'required|string|max:20',
+        'creative_director' => 'required|string|max:40',
+        'headquarters' => 'required|string|max:40',
+        'established_year' => 'required|numeric|digits:4',
+        'website' => 'required|active_url',
+        'image_logo' => 'nullable|string|max:255',
+        ];
+    }
+
+    public function messages(): array{
+
+        return [
+            'brand_name.required' => 'The name of the brand is essential!',
+            'creative_director.required'=> 'The brain behind the brand is essential!',
+            'headquarters.required'=> 'The where is essential!',
+            'established_year.required'=> 'The when is also essential!',
+            'established_year.numeric'=> 'Hey! This is not a year!', //revisar que no pueden escribir más de 4
+            'established_year.digits'=> 'Hey! You forget a number...',
+            'website.required'=> 'Hey! The new where is essential!',
+            'website.active_url'=> 'Hey! wwwwhat is this?'
+
+        ];
+    }
+}
