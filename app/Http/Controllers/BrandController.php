@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use Illuminate\Http\Request;
-use App\Http\Requests\BrandCreateRequest;
+use App\Http\Requests\BrandRequest;
 
 class BrandController extends Controller
 {
@@ -28,7 +28,7 @@ class BrandController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(BrandCreateRequest $request)
+    public function store(BrandRequest $request)
     {   
         //llamamos a los datos ya validados
         $data = $request->validated();
@@ -42,7 +42,7 @@ class BrandController extends Controller
             'website' => $data['website'],
             //'image_logo' => $data['image_logo'],
         ]);
-        
+
         $brand->save();
 
         return redirect('/brand')->with('message', 'Success!, Your brand has been saved successfully');
@@ -59,17 +59,32 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(string $id)
+    public function edit(int $id)
     {
-        //
+        $brand = Brand::find($id);
+        return view('brand.edit')->with('brand', $brand);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(BrandRequest $request, int $id)
     {
-        //
+        $brand = Brand::find($id);
+
+        $updated_data = $request->validated();
+        
+        $brand->update([
+
+            'brand_name' => $updated_data['brand_name'],
+            'creative_director' => $updated_data['creative_director'],
+            'headquarters' => $updated_data['headquarters'],
+            'established_year' => $updated_data['established_year'],
+            'website' => $updated_data['website'],
+            //'image_logo' => $data['image_logo'],
+        ]);
+
+        return redirect('/brand')->with('message', 'Success!, Your brand has been saved successfully');
     }
 
     /**
@@ -77,6 +92,9 @@ class BrandController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $brand = Brand::find($id);
+        $brand->delete();
+
+        return redirect('/brand')->with('message', 'Success!, Your brand has been deleted successfully');
     }
 }
