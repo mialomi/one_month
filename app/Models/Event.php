@@ -2,8 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Brand;
+use App\Models\Season;
+use App\Models\Collection;
+use App\Models\Place;
+Use App\Models\Money;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+
 
 class Event extends Model
 {

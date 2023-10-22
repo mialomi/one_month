@@ -26,3 +26,6 @@ Route::middleware([
         return view('dashboard');
     })->name('dashboard');
 });
+
+Route::resource('brand', 'App\Http\Controllers\BrandController');
+Route::resource('shows', 'App\Http\Controllers\ShowController');
