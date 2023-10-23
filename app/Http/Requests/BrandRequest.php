@@ -29,7 +29,7 @@ class BrandRequest extends FormRequest
         'brand_name' => 'required|string',
         'creative_director' => 'required|string|max:40',
         'headquarters' => 'required|string|max:40',
-        'established_year' => 'required|numeric|digits:4|gte:1850|lte:'.$year,
+        'established_year' => 'required|numeric|digits:4|gte:1800|lte:'.$year,
         'website' => 'required|active_url',
         'image_logo' => 'nullable|string|max:255',
         ];
@@ -47,7 +47,7 @@ class BrandRequest extends FormRequest
             'established_year.gte'=> 'Hey! What era is this?',
             'established_year.lte'=> 'Hey! Can you guess the future?',
             'website.required'=> 'Hey! The new where is essential!',
-            'website.active_url'=> 'Hey! wwwwhat is this?'
+            'website.active_url'=> 'Hey! wwwhat is this?'
 
         ];
     }
