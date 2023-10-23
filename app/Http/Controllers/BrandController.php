@@ -33,7 +33,7 @@ class BrandController extends Controller
         //llamamos a los datos ya validados
         $data = $request->validated();
         
-        $brand = new Brand([
+        $brand = Brand::create([
 
             'brand_name' => $data['brand_name'],
             'creative_director' => $data['creative_director'],
@@ -43,7 +43,7 @@ class BrandController extends Controller
             //'image_logo' => $data['image_logo'],
         ]);
 
-        $brand->save();
+        
 
         return redirect('/brand')->with('message', 'Success!, Your brand has been saved successfully');
     }
