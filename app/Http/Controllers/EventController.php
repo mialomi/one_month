@@ -50,15 +50,7 @@ class EventController extends Controller
             $data['online_events'] = 0;
         }
         
-        //creamos un nuevo objeto money
-        $money = Money::create([
-            'brands_id' => $data['brands_id'],
-            'spendings' => $data['spendings'] ?? null,
-            'earnings' => $data['earnings'] ?? null,
-        ]);
-        
-        //creamos un nuevo objeto Event
-        $money_id = $money->id;
+        //creamos un nuevo objeto evento 
         $event = Event::create([
             'brands_id'=> $data['brands_id'],
             'seasons_id'=> $data['seasons_id'],
@@ -67,9 +59,17 @@ class EventController extends Controller
             'date_time'=> $data['date_time'],
             'online_events'=> $data['online_events'],
             'location' => $data['location'],
-            'money_id'=> $money_id,
-            
+
         ]);
+        //creamos nuevo objeto money
+        $money = Money::create([   
+            'spendings' => $data['spendings'] ?? null,
+            'earnings' => $data['earnings'] ?? null,
+        ]);
+        
+        //actualizamos money_id en event
+        $event->update(['money_id' => $money->id]);
+
 
         return redirect('/event')->with('message', 'Success!, Your show has been saved successfully');
     }
@@ -77,9 +77,10 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
+        $event = Event::find($id);
+        return view('event.show', compact('event'));
     }
 
     /**
