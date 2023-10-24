@@ -18,8 +18,8 @@ class EventController extends Controller
      */
     public function index()
     {
-        $event = Event::paginate(5);
-
+       
+        $event = Event::all();
         return view('event.index')->with('event', $event);
     }
 
@@ -45,24 +45,30 @@ class EventController extends Controller
         //llamamos a los datos ya validados
         $data = $request->validated();
 
+        //en el caso que online events no esté marcado, le asignamos 0
+        if(!array_key_exists('online_events', $data)){
+            $data['online_events'] = 0;
+        }
+        
         //creamos un nuevo objeto money
         $money = Money::create([
             'brands_id' => $data['brands_id'],
-            'spendings' => $data['spendings'],
-            'earnings' => $data['earnings'],
+            'spendings' => $data['spendings'] ?? null,
+            'earnings' => $data['earnings'] ?? null,
         ]);
-
+        
         //creamos un nuevo objeto Event
-
+        $money_id = $money->id;
         $event = Event::create([
             'brands_id'=> $data['brands_id'],
             'seasons_id'=> $data['seasons_id'],
             'collections_id'=> $data['collections_id'],
             'places_id'=> $data['places_id'],
-            'money_id'=> $money->id,
             'date_time'=> $data['date_time'],
-            'location' => $data['location'],
             'online_events'=> $data['online_events'],
+            'location' => $data['location'],
+            'money_id'=> $money_id,
+            
         ]);
 
         return redirect('/event')->with('message', 'Success!, Your show has been saved successfully');
