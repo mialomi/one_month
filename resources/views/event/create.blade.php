@@ -21,13 +21,14 @@
     <div class="max-w-md p-8 mx-auto border border-gray-200 rounded"> 
         <h1 class="text-2xl font-medium">Create New Event</h1>
         
-        <form action="/event" method="POST" enctype="multipart/form-data">
+        <form action="/event" method="POST">
+          @csrf
           <div class="mt-8 space-y-6"> 
               
               <span class="text-sm">Your Brand is not here? <span>
                 <a href="{{ route ('brand.create') }}" class="text-blue-500 hover:underline" >Register it first! </a>
                   
-              @csrf
+             
       
               <!-- BRAND NAME OK-->
       
@@ -39,19 +40,22 @@
                               <option value="{{ $brand->id }}">{{ $brand->brand_name }}</option>
                           @endforeach
                       </select>
+                      @error('brands_id')
+                            <div class="text-danger">{{ $message }}</div>
+                      @enderror
                   </div>
                  
           <!-- SEASON BLOCK -->
               <!-- season -->
               <div>
                 <label for="seasons_id" class="block mt-3 mb-1 text-sm font-medium text-gray-700">Season</label>
-                <select name="seasons_id" id="seasons_id" required class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
+                <select name="seasons_id" id="seasons_id" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
                     <option value="" disabled selected>Select a season</option>
                     @foreach ($seasons as $season)
                       <option value="{{ $season->id }}">{{ $season->name}}</option>
                     @endforeach
                 </select>
-                    @error('seasons')
+                    @error('seasons_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
               </div>
@@ -59,13 +63,13 @@
               <!-- collection -->
             <div>
                 <label for="collections_id" class="block mt-3 mb-1 text-sm font-medium text-gray-700">Collection</label>
-                  <select name="collections_id" id="collections_id" required class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
+                  <select name="collections_id" id="collections_id" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
                       <option value="" disabled selected>Select the collection</option>
                       @foreach ($collections as $collection)
                       <option value="{{ $collection->id }}">{{ $collection->name}}</option>
                     @endforeach
                 </select>
-                    @error('collections')
+                    @error('collections_id')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
               </div>
@@ -77,7 +81,7 @@
               
               <div class= "form-group">
                 <label for="date_time" class="block mt-3 mb-1 text-sm font-medium text-gray-700">Date Time</label>
-                <input type="datetime-local" id="date_time" name="date_time" required class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
+                <input type="datetime-local" id="date_time" name="date_time" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
                     @error('date_time')
                         <div class="text-danger">{{ $message }}</div>
                     @enderror
@@ -88,7 +92,6 @@
           
             <!-- online events? -->
               <div class="flex items-center form-group">
-                
                 <input type="checkbox" name="online_events" id="online_events" value="1" class="w-5 h-5 accent-pink-100">
                 <label for="online_events" class="mt-2 ml-2 text-sm font-medium text-gray-700">Online Event</label>
               </div>
@@ -96,7 +99,7 @@
             <!-- city -->
             <div>
               <label for="places_id" class="block mt-3 mb-1 text-sm font-medium text-gray-700">City</label>
-                    <select name="places_id" id="places_id" required class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
+                    <select name="places_id" id="places_id" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500">
                         <option value="" disabled selected>Select a city</option>
                         @foreach($places as $place)
                             <option value="{{ $place->id }}">{{ $place->city }}</option>
