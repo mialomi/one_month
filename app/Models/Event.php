@@ -16,6 +16,7 @@ class Event extends Model
     use HasFactory;
 
     protected $fillable = ['brands_id', 'seasons_id', 'collections_id', 'places_id', 'money_id', 'date_time', 'location', 'online_events'];
+    
 
     public function brand(){
 
@@ -28,7 +29,7 @@ class Event extends Model
 
     public function collection(){
         
-        return $this->belongsTo(Collection::class, 'collection_id');
+        return $this->belongsTo(Collection::class, 'collections_id');
     }
 
     public function place(){
