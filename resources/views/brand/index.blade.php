@@ -27,14 +27,14 @@
 </div>    
 
 
-<a href="brand/create" class=" border px-4 py-2 rounded-lg text-base font-normal text-gray-600 hover:bg-blue-200 hover:text-blue-700">Create</a>
+<a href="brand/create" class="px-4 py-2 text-base font-normal text-gray-600 border rounded-lg hover:bg-blue-200 hover:text-blue-700">Create</a>
 
  
 <div class="container mx-auto mt-4">
 
 
 
-<table class="w-5/6 table table-striped">
+<table class="table w-5/6 table-striped">
     <thead>
       <tr>
         <th scope="col" style="display: none;">id</th>
@@ -47,7 +47,7 @@
       </tr>
     </thead>
     <tbody>
-        @foreach ($brand as $brand)
+        @foreach ($brands as $brand)
             
         
       <tr>
@@ -61,7 +61,7 @@
 
         <td>
           <form action=" {{ route ('brand.destroy', $brand->id)}}" method="POST">
-            <a href="{{ route('brand.edit', $brand->id) }}" class="border px-3 py-1 rounded-lg text-gray-500 hover:bg-blue-200 hover:text-blue-700">Edit</a>
+            <a href="{{ route('brand.edit', $brand->id) }}" class="px-3 py-1 text-gray-500 border rounded-lg hover:bg-blue-200 hover:text-blue-700">Edit</a>
            
             @csrf
             @method('DELETE')
@@ -76,6 +76,7 @@
   </table>  
 </div>  
 
-
+<!-- Display the pagination links -->
+{{ $brands->links() }}
 
 </html>
