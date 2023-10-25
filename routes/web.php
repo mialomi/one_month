@@ -28,4 +28,4 @@ Route::middleware([
 });
 
 Route::resource('brand', 'App\Http\Controllers\BrandController');
-Route::resource('shows', 'App\Http\Controllers\ShowController');
+Route::resource('event', 'App\Http\Controllers\EventController');

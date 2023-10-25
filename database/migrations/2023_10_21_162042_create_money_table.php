@@ -14,9 +14,8 @@ return new class extends Migration
         Schema::create('money', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('brands_id')->constrained();
-            $table->decimal('spendings');
-            $table->decimal('earnings');
+            $table->decimal('spendings')->nullable();
+            $table->decimal('earnings')->nullable();
 
         });
     }

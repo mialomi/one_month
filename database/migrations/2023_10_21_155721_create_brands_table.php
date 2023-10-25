@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('brand_name');
             $table->string('creative_director', 40);
             $table->string('headquarters', 40);
-            $table->year('established_year');
+            $table->integer('established_year');
             $table->string('image_logo')->nullable();
             $table->string('website');
         });

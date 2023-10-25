@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreignId('seasons_id')->constrained();
             $table->foreignId('collections_id')->constrained();
             $table->foreignId('places_id')->constrained();
-            $table->foreignId('money_id')->constrained();
+            $table->foreignId('money_id')->nullable()->references('id')->on('money')->onDelete('cascade');
             $table->dateTime('date_time');
             $table->string('location');
             $table->tinyInteger('online_events')->nullable();

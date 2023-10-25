@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use App\Http\Requests\BrandRequest;
+use Illuminate\Support\Facades\DB;
+use Illuminate\View\View;
+
 
 class BrandController extends Controller
 {
@@ -13,8 +16,8 @@ class BrandController extends Controller
      */
     public function index()
     {
-        $brand = Brand::all();
-        return view('brand.index')->with('brand', $brand);
+        $brands = Brand::paginate(10);
+        return view('brand.index')->with('brands', $brands);
     }
 
     /**
@@ -33,7 +36,7 @@ class BrandController extends Controller
         //llamamos a los datos ya validados
         $data = $request->validated();
         
-        $brand = new Brand([
+        $brand = Brand::create([
 
             'brand_name' => $data['brand_name'],
             'creative_director' => $data['creative_director'],
@@ -43,7 +46,7 @@ class BrandController extends Controller
             //'image_logo' => $data['image_logo'],
         ]);
 
-        $brand->save();
+        
 
         return redirect('/brand')->with('message', 'Success!, Your brand has been saved successfully');
     }
