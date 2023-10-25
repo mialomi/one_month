@@ -9,6 +9,7 @@ use App\Models\Place;
 use App\Models\Season;
 use App\Models\Event;
 use App\Http\Requests\EventRequest;
+use App\Http\Requests\UpdateEventRequest;
 use Illuminate\Http\Request;
 
 class EventController extends Controller
@@ -19,8 +20,8 @@ class EventController extends Controller
     public function index()
     {
        
-        $event = Event::all();
-        return view('event.index')->with('event', $event);
+        $events = Event::paginate(10);
+        return view('event.index')->with('events', $events);
     }
 
     /**
@@ -88,22 +89,78 @@ class EventController extends Controller
      */
     public function edit(string $id)
     {
-        //
+        $event = Event::find($id);
+       // dd($show);
+        $seasons = Season::all();
+        $collections = Collection::all();
+        $places = Place::all();
+        $money = Money::all();
+        
+
+        return view('event.edit', compact('event', 'seasons', 'collections', 'places', 'money'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(UpdateEventRequest $request, int $id)
     {
-        //
+        $event = Event::find($id);
+    
+        $updated_data = $request->validated();
+        if(!array_key_exists('online_events', $updated_data)){
+            $updated_data['online_events'] = 0;
+        }
+        //dd($updated_data);
+
+        $event->update([
+
+            'seasons_id' => $updated_data['seasons_id'],
+            'collections_id' => $updated_data['collections_id'],
+            'places_id'=> $updated_data['places_id'],
+            'date_time'=> $updated_data['date_time'],
+            'online_events'=> $updated_data['online_events'],
+            'location'=> $updated_data['location'],
+
+        ]);
+
+        /*$event->seasons_id = $updated_data['seasons_id'];
+        $event->collections_id = $updated_data['collections_id'];
+        $event->places_id = $updated_data['places_id'];
+        $event->date_time = $updated_data['date_time'];
+        $event->online_events = $updated_data['online_events'];
+        $event->location = $updated_data['location'];
+        $event->save();
+        //dd($event);*/
+
+        $money = $event->money;
+
+        /*$money->spendings = $updated_data['spendings'];
+        $money->earnings = $updated_data['earnings'];
+        $money->save();
+        //dd($money);*/
+
+        $money -> save([
+            'spendings' => $updated_data['spendings'],
+            'earnings' => $updated_data['earnings'],
+        ]);
+        
+        return redirect('/event')->with('message', 'Success!, Your show has been updated successfully');
+
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $event = Event::find($id);
+        $id_money_event = $event->money_id;
+        $money = Money::find($id_money_event);
+        $money->delete();
+
+        $event->delete();
+
+        return redirect('/event')->with('message', 'Success!, Your show has been deleted successfully');
     }
 }
