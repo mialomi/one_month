@@ -34,4 +34,19 @@ class UpdateEventRequest extends FormRequest
     
         ];
     }
+
+    public function messages(): array{
+        return [
+            
+            'seasons_id.required' => 'Choose a season from the list!',
+            'collections_id.required' => 'Choose a collection from the list!',
+            'places_id.required' => 'Choose the city where the show will take place!',
+            'spendings.numeric' => 'Hey, this is not a number!',
+            'earnings.numeric' => 'Hey, this is not a number!',
+            'date_time.required' => 'The when is crucial for the show!',
+            'location.required_if' => 'Is it a building, museum, square... where?',
+
+
+        ];
+    }
 }

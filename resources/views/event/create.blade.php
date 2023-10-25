@@ -112,7 +112,7 @@
             <!-- Location -->
               <div>
                 <label for="location" class="block mt-3 mb-1 text-sm font-medium text-gray-700">Location</label>
-                <input type="text" name="location" id="location" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="Enter the placement" />
+                <input type="text" name="location" id="location" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="Enter the placement" value="{{ old('location') }}" />
                    
             </div>
       
@@ -120,12 +120,12 @@
             <!-- costs --> 
               <div>
                 <label for="spendings" class="block mt-3 mb-1 text-sm font-medium text-gray-700">Spendings</label>
-                <input type="text" name="spendings" id="spendings" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="spendings" />
+                <input type="text" name="spendings" id="spendings" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="spendings" value="{{ old('spendings') }}"/>
               </div>
             <!-- revenue -->
               <div>
                 <label for="earnings" class="block mt-3 mb-1 text-sm font-medium text-gray-700">Earnings</label>
-                <input type="text" name="earnings" id="earnings" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="earnings" />
+                <input type="text" name="earnings" id="earnings" class="block w-full px-3 py-2 text-gray-700 bg-gray-100 border border-gray-200 rounded focus:ring-blue-500 focus:border-blue-500" placeholder="earnings" value="{{ old('earnings') }}"/>
               </div>
          </div>
       
