@@ -1,3 +1,5 @@
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -41,10 +43,10 @@
           <td colspan="2" class="font-semibold tracking-wide text-gray-700 border-t-2 text-7xl">{{ $event->brand->brand_name }}</td>
         </tr>
         <tr>
-          <td colspan="2" class="pl-2 mb-3 text-base italic font-normal tracking-wide text-gray-500">{{ $event->season->collection }}</td>
+          <td colspan="2" class="pl-2 mb-3 text-base italic font-normal tracking-wide text-gray-500">{{ $event->season->name }}</td>
         </tr>
         <tr>
-          <td colspan="2" class="pl-2 mb-3 text-base italic font-normal tracking-wide text-gray-500">{{ $event->season->season }}</td>
+          <td colspan="2" class="pl-2 mb-3 text-base italic font-normal tracking-wide text-gray-500">{{ $event->collection->name }}</td>
         </tr>
         <tr>
           <td class="pl-2 text-base font-light text-gray-500">
