@@ -26,7 +26,7 @@ You must choose the brand from the drop-down menu and fill it out.
 - Enter the **location** of the event
 - Associated **expenses**: you can enter what the parade cost and what benefit it has brought
 
-## Upcoming options
+## Upcoming 
 
  - [ ] Upload images
  - [ ] Calendar
